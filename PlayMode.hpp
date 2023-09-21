@@ -23,26 +23,52 @@ struct PlayMode : Mode {
 	struct Button {
 		uint8_t downs = 0;
 		uint8_t pressed = 0;
-	} left, right, down, up;
+	} left, right, down, up, cw, ccw;
 
 	//local copy of the game scene (so code can change it during gameplay):
 	Scene scene;
 
-	//hexapod leg to wobble:
-	Scene::Transform *hip = nullptr;
-	Scene::Transform *upper_leg = nullptr;
-	Scene::Transform *lower_leg = nullptr;
-	glm::quat hip_base_rotation;
-	glm::quat upper_leg_base_rotation;
-	glm::quat lower_leg_base_rotation;
-	float wobble = 0.0f;
+	//max position of camera
+	const float max_x = 29.5f;
+	const float max_y = 29.5f;
 
-	glm::vec3 get_leg_tip_position();
+	//prepare state
+	bool prepare = true;
 
-	//music coming from the tip of the leg (as a demonstration):
-	std::shared_ptr< Sound::PlayingSample > leg_tip_loop;
+	//start timer?
+	bool start_timer = true;
+	float timer = 0.0f;
+
+	//hit flag
+	bool hit = false;
+
+	//hit radius
+	const float hit_radius = 10.0f;
+
+	//point system
+	int points = 0;
+	const int min_points = 0;
+	const int max_points = 10;
+
+	//pointer to transforms
+	Scene::Transform *explosion = nullptr;
+
+	//oncoming explosion position
+	glm::vec2 explosion_pos;
+
+	//background music
+	std::shared_ptr< Sound::PlayingSample > background_loop;
+
+	//alarm
+	std::shared_ptr< Sound::PlayingSample > alarm_audio;
+
+	//hit noise
+	std::shared_ptr< Sound::PlayingSample > hit_audio;
 	
 	//camera:
 	Scene::Camera *camera = nullptr;
+
+	//light:
+	Scene::Light *light = nullptr;
 
 };
