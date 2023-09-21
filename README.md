@@ -6,7 +6,7 @@ Design: Everyone loves explosions!... Until you got sucked into it. Luckily, you
 
 Screen Shot:
 
-![Screen Shot](screenshot.png)
+![Screen Shot](shot.png)
 
 How To Play:
 WASD to move around! You can also use K and L to change directions you are heading. Play with headphones on and listen to where the alarm is coming from and avoid being caught up in explosions. When you have higher points, the explosions will also be larger.
